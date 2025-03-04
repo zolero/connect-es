@@ -15,13 +15,12 @@
   },
   "scripts": {
     "generate": "buf generate buf.build/connectrpc/conformance:v1.0.4",
-    "postgenerate": "license-header src/gen",
-    "prebuild": "rm -rf ./dist/*",
+    "prebuild": "shx rm -rf ./dist/*",
     "build": "npm run build:cjs && npm run build:esm",
     "postbuild": "connectconformance --version",
     "build:cjs": "tsc --project tsconfig.json --module commonjs --verbatimModuleSyntax false --moduleResolution node10 --outDir ./dist/cjs && echo >./dist/cjs/package.json '{\"type\":\"commonjs\"}'",
     "build:esm": "tsc --project tsconfig.json --outDir ./dist/esm",
-    "format": "prettier --write --ignore-unknown '.' '!dist' '!src/gen'",
+    "format": "prettier --write --ignore-unknown . !dist !src/gen",
     "license-header": "license-header",
     "lint": "eslint --max-warnings 0 .",
     "attw": "attw --pack"

@@ -12,11 +12,10 @@
     "connect-migrate": "bin/connect-migrate"
   },
   "scripts": {
-    "prebuild": "rm -rf ./dist/*",
+    "prebuild": "shx rm -rf ./dist/*",
     "build": "tsc --project tsconfig.json --outDir ./dist/cjs",
     "test": "jasmine --config=jasmine.json",
-    "format": "prettier --write --ignore-unknown '.' '!dist'",
-    "license-header": "license-header",
+    "format": "prettier --write --ignore-unknown . !dist",
     "lint": "eslint --max-warnings 0 ."
   },
   "engines": {
