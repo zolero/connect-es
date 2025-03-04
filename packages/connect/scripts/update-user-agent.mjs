@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import { readFileSync, writeFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 import assert from "node:assert";
 
 const paths = [
@@ -25,8 +26,13 @@ const paths = [
 ];
 
 const { version } = JSON.parse(
-  readFileSync(new URL("../package.json", import.meta.url).pathname, "utf-8"),
+  readFileSync(
+    fileURLToPath(new URL("../package.json", import.meta.url)),
+    "utf-8",
+  ),
 );
+
+assert(typeof version === "string");
 assert(typeof version == "string");
 assert(version.length >= 5);
 
